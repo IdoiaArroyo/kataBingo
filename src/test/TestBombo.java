@@ -3,43 +3,36 @@ import static org.junit.Assert.*;
 
 import java.lang.reflect.Array;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import clases.Bombo;
 
 
 public class TestBombo {
+	
+	Bombo bombo;
 
+	@Before
+	public void setUp(){
+		bombo = new Bombo();
+	}
+
+	
 	@Test
-	public void CanCreateBombo() {
-		new Bombo();		
+	public void BomboContainsAllNumbersBetween1And90(){
+
+		for (int i = 1 ; i <= 90 ; i++){
+			
+			assertTrue(bombo.getHypeNumbers().contains(i));
+		}
+				
 	}
 	
 	@Test
 	public void whenCallGetNumber_returnNumberBetween1And90(){
-		int number = new Bombo().getRandomNumber();
-		
+		int number = bombo.getHypeNumber();
 		assertTrue((1 <= number && number <= 90));
-	}
-	
-	@Test
-	public void BomboContainsAllNumbersBetween1And90(){
-		Bombo bombo = new Bombo();
-		boolean[] numbersBombo = new boolean[90];
-		for (int i = 1 ; i <= 90 ; i++){
-			numbersBombo[bombo.getRandomNumber()] = true;
-		}
-		
-		boolean ok = true;
-		for (int i = 0 ; i < numbersBombo.length ; i++){
-			if (numbersBombo[i] == false){
-				ok = false;
-				break;
-			}
-		}
-		
-		assertTrue(ok);
-		
 	}
 	
 
